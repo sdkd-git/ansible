@@ -1,0 +1,6 @@
+---
+- name: Install Apache
+  apt: name=apache state=present update_cache=yes
+
+- name: Allow web ports in firewall
+  command: ufw allow in "Apache Full"

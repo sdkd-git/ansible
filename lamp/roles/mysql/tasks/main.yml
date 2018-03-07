@@ -1,0 +1,9 @@
+---
+- name: Install MySQL
+  apt: name=mysql-server state=present update_cache=yes
+
+  mysql_db: name={{ item }} state=present
+  with_items:
+    - test
+- name: create application user
+  mysql_user: name={{ dbuser }} password={{ dbpassword }} priv=*.*:ALL state=present

@@ -1,0 +1,15 @@
+---
+
+- name: Install Apache
+  apt: name={{ item }} state=present update_cache=yes
+  with_items: "{{ pkg }}"
+    - php
+    - libapache2-mod-php
+    - php-mcrypt
+    - php-mysql
+    
+- name: Install Hello World PHP script
+  copy: src=info.php dest=/var/www/info.php mode=0664
+
+- name: Copy Test Page
+  template: src=index.html dest=/var/www/html/index.html
